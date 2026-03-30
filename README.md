@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Проект
 
-## Getting Started
+Next.js-приложение в **корне** репозитория (удобно для Vercel: без подпапки и без `builds` в `vercel.json`).
 
-First, run the development server:
+## Деплой на Vercel
+
+1. Подключи репозиторий: **Add New Project** → Import.
+2. **Root Directory** оставь **пустым** (`.`). Framework: **Next.js** (определится по `package.json`).
+3. **Environment Variables** — как в [`.env.example`](.env.example): `NEXT_PUBLIC_SUPABASE_*`, `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY` (или `SUPABASE_ANON_KEY`) для Production и Preview.
+4. **Deploy**.
+
+### Если снова 404 или «NOT_FOUND»
+
+1. **Deployments** → открой последний деплой → вкладка **Building** / **Build Logs**. Если сборка красная — исправь ошибку из лога (часто не хватает переменных на этапе `next build`).
+2. **Settings → Environment Variables** — для **Production** и **Preview** должны быть заданы все ключи из [`.env.example`](.env.example). После добавления переменных обязателен **Redeploy** (старый билд их не подхватит).
+3. **Settings → General → Root Directory** — поле **пустое** (корень репозитория). Если там написано `my-app` — очисти и сохрани.
+4. Открывай URL из карточки **Production** или **Preview** в разделе **Deployments**, а не старый закладочный адрес от удалённого деплоя.
+
+### Supabase
+
+В Dashboard → **Authentication → URL Configuration** добавь `https://<проект>.vercel.app/auth/confirm` в **Redirect URLs** и выставь **Site URL** на тот же хост.
+
+### Локально
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

@@ -2,11 +2,7 @@ import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
 import { GUEST_BROWSE_COOKIE } from '@/lib/guest-browse'
-import {
-  assertSupabaseServerEnv,
-  getServerSupabaseKey,
-  getServerSupabaseUrl,
-} from '@/lib/supabase-env'
+import { getServerSupabaseKey, getServerSupabaseUrl } from '@/lib/supabase-env'
 
 function copyCookies(from: NextResponse, to: NextResponse) {
   from.cookies.getAll().forEach(({ name, value }) => {
@@ -19,13 +15,20 @@ export async function updateSession(request: NextRequest) {
     request,
   })
 
-  assertSupabaseServerEnv()
+  const serverUrl = getServerSupabaseUrl()
+  const serverKey = getServerSupabaseKey()
+  if (!serverUrl || !serverKey) {
+    console.error(
+      '[supabase] Нет SUPABASE_URL/SUPABASE_* или NEXT_PUBLIC_* на сервере. Добавь переменные в Vercel → Settings → Environment Variables и сделай Redeploy.'
+    )
+    return NextResponse.next({ request })
+  }
 
   // With Fluid compute, don't put this client in a global environment
   // variable. Always create a new one on each request.
   const supabase = createServerClient(
-    getServerSupabaseUrl(),
-    getServerSupabaseKey(),
+    serverUrl,
+    serverKey,
     {
       cookies: {
         getAll() {
