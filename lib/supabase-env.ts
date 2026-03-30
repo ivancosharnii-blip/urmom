@@ -46,9 +46,9 @@ export function assertSupabaseServerEnv(): void {
   const key = getServerSupabaseKey();
   if (!url || !key) {
     throw new Error(
-      "Задайте в .env.local переменные SUPABASE_URL и SUPABASE_ANON_KEY " +
-        "(или SUPABASE_PUBLISHABLE_KEY), либо NEXT_PUBLIC_* и пересоберите проект. " +
-        "Для `pnpm preview` / production без пересборки нужны SUPABASE_* (см. .env.example). " +
+      "Задайте SUPABASE_URL и SUPABASE_ANON_KEY (или SUPABASE_PUBLISHABLE_KEY), " +
+        "плюс NEXT_PUBLIC_SUPABASE_URL и публичный ключ: локально в .env.local, " +
+        "на Vercel — Project → Settings → Environment Variables (Production и Preview). " +
         "https://supabase.com/dashboard/project/_/settings/api"
     );
   }

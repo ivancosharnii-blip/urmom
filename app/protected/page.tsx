@@ -3,6 +3,9 @@ import { redirect } from 'next/navigation'
 import { LogoutButton } from '@/components/logout-button'
 import { createClient } from '@/lib/supabase/server'
 
+/** Не пререндерить при `next build` на Vercel без env — иначе падает assert в createClient */
+export const dynamic = 'force-dynamic'
+
 export default async function ProtectedPage() {
   const supabase = await createClient()
 
