@@ -20,7 +20,19 @@ export function Navigation() {
             </span>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4 flex-wrap justify-end">
+            <Link
+              href="/auth/login"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors px-1"
+            >
+              Вход
+            </Link>
+            <Link
+              href="/auth/sign-up"
+              className="text-sm font-medium rounded-md border border-border bg-background px-3 py-1.5 text-foreground hover:bg-muted transition-colors"
+            >
+              Регистрация
+            </Link>
             <Link
               href="https://www.instagram.com/vaneakosha?igsh=MWNveHlsbXR6Y3l0cQ%3D%3D&utm_source=qr"
               target="_blank"
