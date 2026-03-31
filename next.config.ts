@@ -8,7 +8,6 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: ROOT_DIR,
   },
-  /** Скрывает индикатор Next.js в dev; портал в DOM может оставаться для оверлея ошибок */
   devIndicators: false,
 };
 
