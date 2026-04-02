@@ -17,7 +17,10 @@
     "build": "next build",
     "start": "next start",
     "preview": "next build && next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "chat-api:dev": "pnpm --dir backend dev",
+    "chat-api:db:up": "pnpm --dir backend db:up",
+    "chat-api:db:setup": "pnpm --dir backend db:setup"
   },
   "dependencies": {
     "@ai-sdk/openai": "^3.0.49",
